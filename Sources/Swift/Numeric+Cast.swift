@@ -248,6 +248,14 @@ public extension CGFloat {
         Double(self)
     }
 
+    var isPositive: Bool {
+        self > 0.0
+    }
+
+    var isNegative: Bool {
+        self < 0.0
+    }
+
     /**
      Common formats: %d , %.2f, %ld, %@
      */
@@ -295,6 +303,14 @@ public extension Double {
 
     var isInt: Bool {
         !(Double(self.int) < abs(self))
+    }
+
+    var isPositive: Bool {
+        self > 0.0
+    }
+
+    var isNegative: Bool {
+        self < 0.0
     }
 
     /**
