@@ -25,7 +25,7 @@ public extension CLLocationCoordinate2D {
 // MARK: - MapPoint
 /*✻**********************************************************************/
 
-extension CLLocationCoordinate2D {
+public extension CLLocationCoordinate2D {
 
     var point: MKMapPoint {
         .init(self)
@@ -37,7 +37,7 @@ extension CLLocationCoordinate2D {
 // MARK: - String
 /*✻**********************************************************************/
 
-extension CLLocationCoordinate2D {
+public extension CLLocationCoordinate2D {
 
     init?(string: String) {
         let components = string.components(separatedBy: ",").map(\.trimmed)
