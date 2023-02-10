@@ -438,6 +438,14 @@ public extension ObservableType where Element == Void {
         }
     }
 
+    func bindMap<O: ObserverType>(to observer: O, transform: @escaping () -> O.Element) -> Disposable {
+        map(transform).bind(to: observer)
+    }
+
+    func bindMap<O: ObserverType>(to observers: O..., transform: @escaping () -> O.Element) -> Disposable {
+        map(transform).bind(to: observers)
+    }
+
 }
 
 public enum RxSwiftExtensionError: Error {
