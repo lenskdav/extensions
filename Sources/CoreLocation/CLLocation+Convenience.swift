@@ -82,6 +82,13 @@ public extension CLLocationCoordinate2D {
         }
     }
 
+	var jsString: String {
+		let lat = latitude.string(format: "%.7f")
+		let lon = longitude.string(format: "%.7f")
+
+		return "\(lon), \(lat)"
+	}
+
 }
 
 /*✻**********************************************************************/

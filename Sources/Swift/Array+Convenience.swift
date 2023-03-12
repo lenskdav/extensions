@@ -182,3 +182,15 @@ public extension ArraySlice {
     }
 
 }
+
+/*✻**********************************************************************/
+// MARK: - Grouped
+/*✻**********************************************************************/
+
+extension Array {
+
+    func grouped<Key: Hashable>(by keyPath: KeyPath<Element, Key>) -> Dictionary<Key, [Element]> {
+        Dictionary(grouping: self) { $0[keyPath: keyPath] }
+    }
+
+}

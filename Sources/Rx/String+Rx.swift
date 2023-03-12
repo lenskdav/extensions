@@ -39,6 +39,10 @@ public extension Observable where Element == String {
         filter { !$0.isEmpty }
     }
 
+	var emptyToNil: Observable<String?> {
+		map { $0.emptyToNil }
+	}
+
 }
 
 public extension Observable where Element == String? {
@@ -46,5 +50,9 @@ public extension Observable where Element == String? {
     var orEmpty: Observable<String> {
         map { $0.orEmpty }
     }
+
+	var emptyToNil: Observable<String?> {
+		map { $0?.emptyToNil }
+	}
 
 }
