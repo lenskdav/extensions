@@ -103,6 +103,10 @@ public extension Array {
     func filter<Value: Equatable>(_ array: [Value], contains keypath: KeyPath<Element, Value>) -> [Element] {
         filter { element -> Bool in array.contains(element[keyPath: keypath]) }
     }
+	
+	func filterOut(_ isNotIncluded: (Element) throws -> Bool) rethrows -> [Element] {
+		try filter { try !isNotIncluded($0) }
+	}
 
     func filterOut<Value: Equatable>(_ keypath: KeyPath<Element, Value>, _ value: Value) -> [Element] {
         filter { element -> Bool in element[keyPath: keypath] != value }
@@ -153,10 +157,6 @@ public extension Array where Element: Hashable {
 
     func isIdentical(to: [Element]) -> Bool {
         difference(from: to).isEmpty
-    }
-
-    func filterOut(_ isNotIncluded: (Element) throws -> Bool) rethrows -> [Element] {
-        try filter { try !isNotIncluded($0) }
     }
 
     func filterOut(_ element: Element?) -> [Element] {
