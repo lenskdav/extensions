@@ -28,10 +28,15 @@ public extension MKMapSize {
 public extension MKMapView {
 
 	func updateAnnotations(add: [MKAnnotation], remove: [MKAnnotation]) {
-		print("Annotationsss: ", annotations)
+		print("------------------------------------------------------------")
+		print("Old Annotationsss: ", annotations)
 
 		self.removeAnnotations(remove)
+		print("After remove Annotationsss: ", annotations)
 		self.addAnnotations(add)
+
+		print("New Annotationsss: ", annotations)
+		print("------------------------------------------------------------")
 	}
 
 }
