@@ -169,6 +169,11 @@ public extension Array where Element: Hashable {
         return (0 ..< 2 * count - 1).map { $0 % 2 == 0 ? self[$0/2] : element }
     }
 
+	func insertBetweenEach(_ elementSource: () -> Element) -> [Element] {
+		guard count > 1 else { return self }
+		return (0 ..< 2 * count - 1).map { $0 % 2 == 0 ? self[$0/2] : elementSource() }
+	}
+
 }
 
 /*✻**********************************************************************/

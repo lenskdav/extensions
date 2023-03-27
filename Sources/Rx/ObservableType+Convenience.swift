@@ -244,6 +244,13 @@ public extension ObservableType {
         }
     }
 
+	func filterOut<Model: AnyObject>(_ model: Model, _ predicate: @escaping (Model, Element) throws -> Bool) -> Observable<Element> {
+		filter { [weak model] element -> Bool in
+			if model == nil { return false }
+			return try !predicate(model!, element)
+		}
+	}
+
 }
 
 /*✻**********************************************************************/
