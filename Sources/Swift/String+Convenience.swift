@@ -75,16 +75,16 @@ public extension String {
         return predicate.evaluate(with: self)
     }
 
-    func attributed(lineSpacing: CGFloat? = nil) -> NSMutableAttributedString {
-        var attributes: [NSAttributedString.Key: Any] = [:]
+	func attributed(attributes: [NSAttributedString.Key: Any] = [:], lineSpacing: CGFloat? = nil) -> NSMutableAttributedString {
+        var newAttributes: [NSAttributedString.Key: Any] = attributes
 
         if let ls = lineSpacing {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = ls
-            attributes[.paragraphStyle] = paragraphStyle
+			newAttributes[.paragraphStyle] = paragraphStyle
         }
 
-        return NSMutableAttributedString(string: self, attributes: attributes)
+        return NSMutableAttributedString(string: self, attributes: newAttributes)
     }
 
     var firstCapitalized: String {
