@@ -9,9 +9,21 @@ import Foundation
 import CoreLocation
 import MapKit
 
-/*✻**********************************************************************/
+// -------------------------------------------------------------------------------
+// MARK: - Convenience
+// -------------------------------------------------------------------------------
+
+public extension CLLocationCoordinate2D {
+
+	static var zero: CLLocationCoordinate2D {
+		.init(latitude: .zero, longitude: .zero)
+	}
+
+}
+
+// -------------------------------------------------------------------------------
 // MARK: - Location
-/*✻**********************************************************************/
+// -------------------------------------------------------------------------------
 
 public extension CLLocationCoordinate2D {
 
@@ -21,9 +33,9 @@ public extension CLLocationCoordinate2D {
 
 }
 
-/*✻**********************************************************************/
+// -------------------------------------------------------------------------------
 // MARK: - MapPoint
-/*✻**********************************************************************/
+// -------------------------------------------------------------------------------
 
 public extension CLLocationCoordinate2D {
 
@@ -33,9 +45,9 @@ public extension CLLocationCoordinate2D {
 
 }
 
-/*✻**********************************************************************/
+// -------------------------------------------------------------------------------
 // MARK: - String
-/*✻**********************************************************************/
+// -------------------------------------------------------------------------------
 
 public extension CLLocationCoordinate2D {
 
@@ -91,14 +103,40 @@ public extension CLLocationCoordinate2D {
 
 }
 
-/*✻**********************************************************************/
+// -------------------------------------------------------------------------------
 // MARK: - Equatable
-/*✻**********************************************************************/
+// -------------------------------------------------------------------------------
 
 extension CLLocationCoordinate2D: Equatable {
 
     public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
+
+}
+
+// -------------------------------------------------------------------------------
+// MARK: - Codable
+// -------------------------------------------------------------------------------
+
+extension CLLocationCoordinate2D: Codable {
+
+    enum CodingKeys: CodingKey {
+        case latitude
+        case longitude
+    }
+
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let latitude = try container.decode(Double.self, forKey: .latitude)
+        let longitude = try container.decode(Double.self, forKey: .longitude)
+        self.init(latitude: latitude, longitude: longitude)
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(latitude, forKey: .latitude)
+        try container.encode(longitude, forKey: .longitude)
     }
 
 }

@@ -3,7 +3,7 @@
 //  Extensions
 //
 //  Created by David Lenský on 12/12/2017.
-//
+//  Copyright © 2017 David Lenský. All rights reserved.
 
 import RxCocoa
 import RxSwift

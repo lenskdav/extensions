@@ -256,12 +256,12 @@ public extension CGFloat {
         self < 0.0
     }
 
-    /**
-     Common formats: %d , %.2f, %ld, %@
-     */
-    func string(format: String) -> String {
-        String(format: format, self)
-    }
+	/**
+	 Common formats: %d , %.2f, %ld, %@
+	 */
+	func string(format: String) -> String {
+		String(format: format, self)
+	}
 
     var signum: Int {
         if self > 0.0 { return 1 }

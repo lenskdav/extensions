@@ -50,4 +50,11 @@ public extension UIEdgeInsets {
         top + bottom
     }
 
+    func updated(top: CGFloat? = nil, left: CGFloat? = nil, bottom: CGFloat? = nil, right: CGFloat? = nil) -> UIEdgeInsets {
+        .init(top: top ?? self.top,
+              left: left ?? self.left,
+              bottom: bottom ?? self.bottom,
+              right: right ?? self.right)
+    }
+
 }

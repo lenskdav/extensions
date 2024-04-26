@@ -12,9 +12,20 @@ public extension Optional {
 
     func or(_ element: Wrapped) -> Wrapped {
         switch self {
-        case .some(let wrapped): return wrapped
-        case .none: return element
+        case .some(let wrapped):    wrapped
+        case .none:                 element
         }
+    }
+
+    var isNil: Bool {
+        switch self {
+        case .some: false
+        case .none: true
+        }
+    }
+
+    var isNotNil: Bool {
+        isNil.not
     }
 
 }
