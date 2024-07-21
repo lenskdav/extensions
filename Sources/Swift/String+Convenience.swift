@@ -104,6 +104,10 @@ public extension String {
         prefix(1).capitalized + dropFirst()
     }
 
+    func tagged(_ tagName: String) -> String {
+        "<\(tagName)>" + self + "</\(tagName)>"
+    }
+
 }
 
 public extension String {

@@ -94,6 +94,20 @@ public extension Array {
         return newDict
     }
 
+    func group<NewKey>(by keyForValue: (Element) throws -> NewKey) rethrows -> [NewKey: [Element]] {
+        var newDictionary: [NewKey: [Element]] = [:]
+        try forEach { value in
+            let newKey = try keyForValue(value)
+
+            if newDictionary.keys.contains(newKey) {
+                newDictionary[newKey]?.append(value)
+            } else {
+                newDictionary[newKey] = [value]
+            }
+        }
+        return newDictionary
+    }
+
 }
 
 public extension Dictionary {

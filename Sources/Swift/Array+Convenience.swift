@@ -174,6 +174,26 @@ public extension Array where Element: Hashable {
 		return (0 ..< 2 * count - 1).map { $0 % 2 == 0 ? self[$0/2] : elementSource() }
 	}
 
+    /// Returns a new array with the elements that are either in this array or in the
+    /// given sequence, but not in both.
+    ///
+    /// In the following example, the `eitherNeighborsOrEmployees` array is made up
+    /// of the elements of the `employees` and `neighbors` arrays that are not in
+    /// both `employees` *and* `neighbors`. In particular, the names `"Bethany"`
+    /// and `"Eric"` do not appear in `eitherNeighborsOrEmployees`.
+    ///
+    ///     let employees: Set = ["Alicia", "Bethany", "Diana", "Eric"]
+    ///     let neighbors = ["Bethany", "Eric", "Forlani"]
+    ///     let eitherNeighborsOrEmployees = employees.symmetricDifference(neighbors)
+    ///     print(eitherNeighborsOrEmployees)
+    ///     // Prints "["Diana", "Forlani", "Alicia"]"
+    ///
+    /// - Parameter other: A sequence of elements. `other` must be finite.
+    /// - Returns: A new array.
+    func symmetricDifference<S>(_ other: S) -> [Element] where Element == S.Element, S: Sequence {
+        set.symmetricDifference(other).array
+    }
+
 }
 
 // -------------------------------------------------------------------------------
